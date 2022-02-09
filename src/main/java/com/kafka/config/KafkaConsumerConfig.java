@@ -18,13 +18,15 @@ import com.kafka.model.User;
 @Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
+	// config for String plain text
+
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
 		Map<String, Object> configs = new HashMap<>();
 		configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "mukesh-1");
+		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "javatechie-1");
 		return new DefaultKafkaConsumerFactory<>(configs);
 	}
 
@@ -43,7 +45,7 @@ public class KafkaConsumerConfig {
 		configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "mukesh-2");
+		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "javatechie-2");
 		return new DefaultKafkaConsumerFactory<>(configs, new StringDeserializer(), new JsonDeserializer<>(User.class));
 	}
 
@@ -53,5 +55,4 @@ public class KafkaConsumerConfig {
 		factory.setConsumerFactory(userConsumerFactory());
 		return factory;
 	}
-
 }
